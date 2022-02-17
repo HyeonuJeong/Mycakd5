@@ -35,3 +35,4 @@ alter table member add TEXT NCLOB;
 insert into member (id, pwd, text) values ('33333',1234,'정치는 국민을 위해 존재한다.');
 
 select * from member;
+

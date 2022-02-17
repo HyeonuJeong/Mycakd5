@@ -48,7 +48,7 @@ INSERT INTO Book VALUES(7, '야구의 추억', '이상미디어', 20000);
 INSERT INTO Book VALUES(8, '야구를 부탁해', '이상미디어', 13000);
 INSERT INTO Book VALUES(9, '올림픽 이야기', '삼성당', 7500);
 INSERT INTO Book VALUES(10, 'Olympic Champions', 'Pearson', 13000);
-select * from book;
+
 INSERT INTO Customer VALUES (1, '박지성', '영국 맨체스타', '000-5000-0001');
 INSERT INTO Customer VALUES (2, '김연아', '대한민국 서울', '000-6000-0001');
 INSERT INTO Customer VALUES (3, '장미란', '대한민국 강원도', '000-7000-0001');

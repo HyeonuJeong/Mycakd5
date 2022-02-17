@@ -1,4 +1,6 @@
 -- [질의 3-1] 모든 도서의 이름과 가격을 검색하시오.
+SELECT	*
+FROM	Book;
 SELECT	bookname, price
 FROM	Book;
 
@@ -16,13 +18,13 @@ FROM	Book;
 SELECT	publisher
 FROM	Book;
 
-SELECT DISTINCT	publisher
+SELECT DISTINCT	publisher -- 중복데이터 제거
 FROM   Book;
 
 -- [질의 3-4] 가격이 20,000원 미만인 도서를 검색하시오.
 SELECT	*
 FROM	Book
-WHERE	price < 20000;
+WHERE	price < 20000; -- 조건 where 
 
 -- [질의 3-5] 가격이 10,000원 이상 20,000 이하인 도서를 검색하시오.
 SELECT	*
@@ -36,7 +38,7 @@ WHERE	price >= 10000 AND price <= 20000;
 -- [질의 3-6] 출판사가 ‘굿스포츠’ 혹은 ‘대한미디어’ 인 도서를 검색하시오.
 SELECT	*
 FROM	Book
-WHERE	publisher IN ('굿스포츠', '대한미디어');
+WHERE	publisher IN ('굿스포츠', '대한미디어'); -- in연산 if a in list:
 
 SELECT	*
 FROM	Book
@@ -50,12 +52,12 @@ WHERE	bookname LIKE '축구의 역사';
 -- [질의 3-8] 도서이름에 ‘축구’ 가 포함된 출판사를 검색하시오.
 SELECT	bookname, publisher
 FROM	Book
-WHERE	bookname LIKE '%축구%';
+WHERE	bookname LIKE '%축구%'; -- like 검색
 
 --[질의 3-9] 도서이름의 왼쪽 두 번째 위치에 ‘구’라는 문자열을 갖는 도서를 검색하시오.
 SELECT	*
 FROM	Book
-WHERE	bookname LIKE '_구%';
+WHERE	bookname LIKE '_구%'; -- _1글자 
 
 --[질의 3-10] 축구에 관한 도서 중 가격이 20,000원 이상인 도서를 검색하시오.
 SELECT	*
@@ -70,23 +72,23 @@ WHERE	publisher ='굿스포츠' OR publisher ='대한미디어';
 --[질의 3-12] 도서를 이름순으로 검색하시오. 
 SELECT	*
 FROM	Book
-ORDER BY	bookname;
+ORDER BY	bookname; -- oder by 정렬순
 
 --[질의 3-13] 도서를 가격순으로 검색하고, 가격이 같으면 이름순으로 검색하시오.
 SELECT	*
 FROM	Book
-ORDER BY	price, bookname;
+ORDER BY	price, bookname;  -- 1순위, 2순위 
 
 --[질의 3-14] 도서를 가격의 내림차순으로 검색하시오. 만약 가격이 같다면 출판사의 오름차순으로 출력하시오.
 SELECT 	*
 FROM 	Book
-ORDER BY 	price DESC, publisher ASC;
+ORDER BY 	price DESC, publisher ASC; --descending(내림차) ascending(오름차)
 
 --[질의 3-15] 고객이 주문한 도서의 총 판매액을 구하시오.
 SELECT	SUM(saleprice)
 FROM	Orders;
 
-SELECT	SUM(saleprice) AS 총매출
+SELECT	SUM(saleprice) AS 총매출 -- as 컬럼명만들기
 FROM	Orders;
 
 --[질의 3-16] 2번 김연아 고객이 주문한 도서의 총 판매액을 구하시오.
@@ -108,14 +110,14 @@ FROM	Orders;
 ==[질의 3-19] 고객별로 주문한 도서의 총 수량과 총 판매액을 구하시오.
 SELECT	custid, COUNT(*) AS 도서수량, SUM(saleprice) AS 총액
 FROM	Orders
-GROUP BY	custid;
+GROUP BY	custid; -- group by custid 같은 컬럼값을 묶어줌
 
 --[질의 3-20] 가격이 8,000원 이상인 도서를 구매한 고객에 대하여 고객별 주문 도서의 총 수량을 구하시오. 단, 두 권 이상 구매한 고객만 구하시오.
 SELECT	custid, COUNT(*) AS 도서수량
 FROM	Orders
 WHERE	saleprice >= 8000
 GROUP BY	custid
-HAVING	count(*) >= 2;
+HAVING	count(*) >= 2; -- having  반드시 그룹바이와 함께 사용
 
 --[질의 3-21] 고객과 고객의 주문에 관한 데이터를 모두 보이시오.
 SELECT	*
