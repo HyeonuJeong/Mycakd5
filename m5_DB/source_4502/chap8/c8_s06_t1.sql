@@ -1,0 +1,13 @@
+
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+
+SELECT SUM(price) 총액
+FROM   Book;
+
+ 
+
+SELECT SUM(price) 총액
+FROM   Book;
+/* 앞의 결과와 다름 */
+ 
+COMMIT;
