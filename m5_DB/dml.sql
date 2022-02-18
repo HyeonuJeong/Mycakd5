@@ -250,6 +250,9 @@ where commission_pct is null;
 
 select *
 from employees
-where mod(employee_id,2)=1
+where mod(employee_id,2)=1;
 
+select last_name, hire_date,last_DAY(ADD_MONTHS(hire_date,1)) "입사 다음달 말일"
+from employees;
 
+select hire_date,next_day(hire_date,'월') from employees;
