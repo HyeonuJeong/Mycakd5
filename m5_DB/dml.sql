@@ -1,3 +1,101 @@
+select * from employees where job_id like '%\_A%' escape '\';
+select * from employees where job_id like '%#_A%' escape '#';
+
+--in > or 대신사용
+select * from employees where manager_id =101 or manager_id =102 or manager_id =103;
+select * from employees where manager_id in (101,102,103);
+
+
+--between and : and 대신사용, 미만, 초과와 같이 포함하지 않는 경우 and를 사용
+select * from employees where manager_id =101 and manager_id =102 and manager_id =103;
+select * from employees where manager_id between 101 and 103;
+
+-- is null/ is not null
+select * from employees where commission_pct is null;
+select * from employees where commission_pct is not null;
+
+--주요함수
+--mod
+select * from employees where mod(employee_id,2)=1;
+select * from employees where mod(employee_id,2)=0;
+select mod(10,3) from dual;
+
+--round()
+select round(355.9555) from dual;
+select round(355.9555,2) from dual;
+select round(355.9555,-1) from dual;
+select round(355.9555,0) from dual;
+
+--trunc() 반올림이 아니라 뒷자리 버리기
+select trunc(45.5555,1) from dual;
+select last_name, trunc(salary/12,2) from employees;
+
+
+--날짜 함수
+select sysdate from dual;
+select sysdate+1 from dual;
+select last_name,round((sysdate - hire_date)) from employees; -- 근속일수
+select last_name,trunc((sysdate - hire_date)/365) from employees; -- 근속년수 만으로 채워야하니 trunc
+select last_name, hire_date,add_months(hire_date,6) from employees;
+select last_day(sysdate) from dual; -- 달의 마지막날  출력
+select hire_date, next_day(hire_date,'월') from employees; -- 다음 월요일
+select sysdate, next_day(sysdate,'금요일') from dual;
+
+
+--months_between()
+select last_name, sysdate,hire_date,trunc(months_between(sysdate,hire_date)) 근속개월 from employees;
+
+--형변환 함수
+-- number character date
+--to_date() 문자열을 날짜로
+-- to_number to_character to_date
+select last_name, months_between('2012/12/31', hire_date) from employees;
+select trunc(sysdate - to_date('2018/11/18')) from dual;
+
+-- employees 테이블에 있는직원들(사번,이름)에 대하여 현재 기준으로 근속연수
+select employee_id, last_name,trunc((sysdate - hire_date)/365) 근속연수 from employees;
+
+
+select to_date('20210101'),
+to_char(to_date('20210101'),'MonthDD YYYY',
+'NLS_DATE_LANGUAGE=english') as format1 from dual;
+
+select to_char(sysdate, ' yy/mm/dd hh24:mi:ss') from dual;
+select to_char(sysdate, ' yy/mm/dd') from dual;
+select to_char(sysdate, ' yyyy-mm-dd') from dual;
+select to_char(sysdate, ' hh24 : mi : ss') from dual;
+select to_char(sysdate, 'day') from dual;
+
+
+--to_char
+--9 한자리 숫자 표현
+--0 숫자표현, 앞자리수 유지
+--$ 달러기호
+--. 소수점을 표시
+--, 특정위치에 표시
+--MI 오른쪽에 ? 기호 표시
+--PR 음수값을 <>FH VYGUS
+--EEEE 과학적 표현
+--공백을 0으로 표현
+--L 지역통화
+
+select salary, to_char(salary, '009999') from employees;
+select to_char(-salary, '009999PR') from employees;
+select to_char(1111, '99.99EEEE') from DUAL;
+select to_char(1111, 'B9999.99') from dual;
+select to_char(1111, 'L9999.99') from dual;
+
+--width_bucket() 지정값, 최소값, 최대값, bucket 개수
+select width_bucket(92,0,100,10) from dual;
+select last_name,salary,width_bucket(salary,0,20000,4) from employees;
+
+
+select employee_id, last_name,salary,
+trunc((sysdate - hire_date)/365) 근속연수,
+width_bucket(trunc((sysdate - hire_date)/365),0,20,29) 등급
+from employees;
+
+
 DESC BOOK;
 SELECT * FROM BOOK;
 SELECT BOOKNAME,PRICE FROM BOOK;
@@ -256,3 +354,130 @@ select last_name, hire_date,last_DAY(ADD_MONTHS(hire_date,1)) "입사 다음달 말일"
 from employees;
 
 select hire_date,next_day(hire_date,'월') from employees;
+
+--select last_name, TRUNC(moths_between(sysdate,hire_date),0), round(months_between(sysdate,hire_date),0)
+
+select last_name, NEXT_DAY(ADD_MONTHS(hire_date,6),'월요일') "6개월 뒤 첫 월요일"
+from employees;
+
+select job_id from employees;
+
+select job_id,sum(salary) 연봉총합,max(salary) 최고연봉 ,min(salary) 최저연봉 
+, floor(avg(salary)) 평균연봉 
+from employees
+
+
+select job_id,sum(salary) 연봉총합,max(salary) 최고연봉 ,min(salary) 최저연봉 
+, floor(avg(salary)) 평균연봉 
+from employees
+group by job_id
+having avg(salary) >=5000;
+order by job_id desc;
+
+
+
+
+select last_name, salary
+from employees
+where last_name like '%l%';
+
+select job_id,hire_date
+from employees
+where job_id like '%PROG%';
+
+select *
+from employees
+where salary>=10000 and manager_id=100;
+
+select salay
+from employees
+where department_id <100;
+
+select job_id
+from employees
+where department_id=101 or department_id=103;
+
+
+
+select *
+from employees;
+
+select * from departments;
+
+select employee_id, department_name
+from employees e, departments d
+where e.department_id = d.department_id and e.employee_id=110;
+
+
+select employee_id, department_name
+from employees e
+join departments d on e.department_id = d.department_id
+where employee_id=110;
+
+select e.employee_id 사번,e.last_name, e.job_id,j.job_title
+from employees e ,jobs j
+where employee_id=120 and e.job_id=j.job_id;
+
+select employee_id ,concat(concat(first_name,' ') ,last_name) ,j.job_id,job_title
+from employees e
+join jobs j on e.job_id = j.job_id
+where employee_id=120;
+
+select concat(concat(a.first_name,' '),a.last_name), a.salary
+from employees a
+where a.salary > 
+(
+select max(b.salary)
+from employees b
+where b.department_id=100
+);
+
+SELECT employee_id , last_name , department_name , job_title
+FROM employees e, departments d, jobs j
+WHERE e.department_id=d.department_id AND e.job_id=j.job_id;
+
+
+SELECT employee_id , last_name , department_name , job_title
+FROM employees e
+
+join departments d
+on e.department_id = d.department_id
+
+join jobs j
+on e.job_id = j.job_id;
+
+SELECT e.employee_id , e.last_name , m.last_name , m.manager_id
+FROM employees e, employees m
+where e.employee_id=m.manager_id;
+
+SELECT e.employee_id , e.last_name , m.last_name , m.manager_id
+FROM employees e, employees m
+where e.employee_id=m.manager_id(+);
+
+-- 2005년 이후 입사한 직원 
+SELECT employee_id , last_name , hire_date,department_name , job_title
+FROM employees e, departments d, jobs j
+WHERE e.department_id=d.department_id AND e.job_id=j.job_id and hire_date>='2005/01/01';
+
+--평균급여보다 높은 직원
+select salary, last_name
+from employees
+where salary > (
+select avg(b.salary)
+from employees b  
+);
+
+--lastname king
+SELECT last_name , hire_date , department_id
+FROM employees
+where last_name like 'King';
+
+select employee_id, last_name,
+case
+    when salary > 20000 then '대표이사'
+    when salary > 15000 then '이사'
+    when salary > 10000 then '부장'
+    when salary > 5000 then '대리'
+    else '사원'
+end as 직급
+from employees;
