@@ -11,28 +11,107 @@
 --테이블명과 칼럼명은 반드시 문자로 시작해야 하고, 벤더별로 길이에 대한 한계가 있다.--
 --벤더에서 사전에 정의한 예약어(Reserved word)는 쓸 수 없다.--
 --A-Z, a-z, 0-9, _, $, # 문자만 허용된다.
-drop table member;
-    
-create table member(
-id varchar2(50),
-pwd varchar2(50),
-name varchar2(50),
-gender varchar2(50),
-age number,
-birthday varchar2(50),
-phone varchar2(50),
-regdate date
+
+select * from tabs;
+CREATE TABLE MEMBER
+(
+ID       VARCHAR2(50),
+PWD      VARCHAR2(50),
+NAME     VARCHAR2(50),
+GENDER   VARCHAR2(50),
+AGE      NUMBER,
+BIRTHDAY VARCHAR2(50),
+PHONE    VARCHAR2(50),
+REGDATE  DATE
 );
 
---일부만 입력
-insert into member (id, pwd,name) values ('11111','1234','hw');
+DROP TABLE MEMBER;
 
---전체입력
-insert into member values ('22222','1234','hww','m',20,'2000-01-01','010-1234-1234','2022-02-15'); --date는 yyyy/mm/dd 형식도 가능
+CREATE TABLE MEMBER
+(
+ID       VARCHAR2(20),
+PWD      VARCHAR2(20),
+NAME     VARCHAR2(20),
+GENDER   NCHAR(2),
+AGE      NUMBER(3),
+BIRTHDAY VARCHAR2(10),
+PHONE    VARCHAR2(13),
+REGDATE  DATE
+);
+--일부 속성만 입력
+INSERT INTO MEMBER(ID, PWD, NAME)VALUES('200901','111','KEVIN'); 
+SELECT * FROM MEMBER;
+--전체 모두 입력
+INSERT INTO MEMBER VALUES('200902','112','JAMES','M',29,'01-JAN-99','010-1234-2345','1994/05/02');
 
-alter table member add TEXT NCLOB;
+SELECT * FROM MEMBER;
 
-insert into member (id, pwd, text) values ('33333',1234,'정치는 국민을 위해 존재한다.');
+ALTER TABLE MEMBER ADD TEXT NCLOB; --nclob 대형 데이터형 
 
-select * from member;
+INSERT INTO MEMBER(ID, PWD,TEXT) VALUES('200903','112','정치는 국민을 위해 존재한다');
 
+--기존 테이블을 이용하여 새로운 테이블을 생성
+CREATE TABLE MEMBER1 AS SELECT * FROM MEMBER;
+SELECT * FROM MEMBER1;
+DESC member1;
+CREATE TABLE member2 AS SELECT * FROM member1 WHERE 1=0;
+DESC member2;
+SELECT * FROM MEMBER2;
+--테이블의 모근 row 삭제
+TRUNCATE TABLE member1;
+
+--테이블 속성 및 타입 조회
+DESC MEMBER;
+--테이블 리스트 조회
+SELECT * FROM TABS;
+
+--ALTER
+DESC MEMBER1;
+--수정
+ALTER TABLE MEMBER1 MODIFY(ID VARCHAR2(50), NAME NVARCHAR2(50));
+--변경
+ALTER TABLE MEMBER1 RENAME COLUMN BIRTHDAY TO BD;
+--삭제
+ALTER TABLE MEMBER1 DROP COLUMN AGE;
+--추가
+ALTER TABLE MEMBER1 ADD AGE NUMBER;
+
+ALTER TABLE MEMBER1 ADD CONSTRAINT MEMBER1_PK PRIMARY KEY (ID);
+
+--[과제] MEMBER2 테이블을 생성한 후 수정, 변경, 삭제, 추가 작업을 수행하세요.(학생 이력 table, 속성은 5개 이상)
+DROP TABLE MEMBER2;
+CREATE TABLE MEMBER2 AS SELECT * FROM MEMBER;
+--ALTER
+DESC MEMBER2;
+--수정
+ALTER TABLE MEMBER2 MODIFY(ID VARCHAR2(10), NAME VARCHAR2(10));
+--변경
+ALTER TABLE MEMBER2 RENAME COLUMN GENDER TO SEX;
+--삭제
+ALTER TABLE MEMBER2 DROP COLUMN PWD;
+--추가
+ALTER TABLE MEMBER2 ADD PWD NUMBER;
+
+ALTER TABLE MEMBER2 ADD CONSTRAINT MEMBER2_PK PRIMARY KEY (ID);
+--트랜잭션
+--SAVEPOINT 이름 : 현재까지의 트랜잭션을 특정 이름으로 지정하는 명령
+--ROLLBACK TO 이름 : 저장되지 않은 데이터를 모두 취소하고 트랜잭션을 종료
+--COMMIT : 저장되지 않은 모든 제이터베이스를 저장하고 현재의 트랜잭션을 종료
+
+SELECT * FROM member1;
+TRUNCATE TABLE member1;
+COMMIT;
+
+INSERT INTO member1 (ID, PWD, NAME) VALUES('200901','111','KEVIN');
+SAVEPOINT SV1;
+INSERT INTO member1 (ID, PWD, NAME, AGE) VALUES('200902','112','JAMES',25);
+UPDATE member1 SET PWD='121' WHERE NAME='KEVIN';
+UPDATE member1 SET PWD='122', AGE='20' WHERE ID='200902';
+SAVEPOINT SV2;
+INSERT INTO member1 (ID, PWD, NAME, AGE) VALUES('200903','113','SUSAN',35);
+--ROLLBACK TO SV1;
+UPDATE member1 SET PWD='131' WHERE NAME='KEVIN';
+ROLLBACK TO SV2;
+DELETE member1 WHERE ID = '200901';
+DELETE member1 WHERE ID = '200902';
+COMMIT;

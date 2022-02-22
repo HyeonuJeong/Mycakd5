@@ -1,3 +1,4 @@
+--ESCAPE문 특수문자출력
 select * from employees where job_id like '%\_A%' escape '\';
 select * from employees where job_id like '%#_A%' escape '#';
 
@@ -52,8 +53,13 @@ select last_name, sysdate,hire_date,trunc(months_between(sysdate,hire_date)) 근�
 select last_name, months_between('2012/12/31', hire_date) from employees;
 select trunc(sysdate - to_date('2018/11/18')) from dual;
 
--- employees 테이블에 있는직원들(사번,이름)에 대하여 현재 기준으로 근속연수
-select employee_id, last_name,trunc((sysdate - hire_date)/365) 근속연수 from employees;
+--Q. employees 테이블에 있는 직원들(사번, 이름 기준으로)에 대하여 현재기준으로 근속연수를 구하세요
+select employee_id, last_name,
+trunc((sysdate - hire_date)/365) 근속연수,
+from employees;
+
+
+
 
 
 select to_date('20210101'),
@@ -90,10 +96,99 @@ select width_bucket(92,0,100,10) from dual;
 select last_name,salary,width_bucket(salary,0,20000,4) from employees;
 
 
-select employee_id, last_name,salary,
+--[과제] employees 테이블에서 employee_id, last_name, salary, hire_date 및 입사일 기준으로 근속년수를 계산해서 아래사항을 추가한 후 
+--출력하세요. 2001년 1월 1일 창업하여 현재(2020년 12월 31일)까지 20년간 운영되어온 회사는 직원의 근속연수에 따라 30등급으로 나누어 등급에
+--따라 1000원의 bonus를 지급(bonus 기준 내림차순 정렬)
+select employee_id, last_name,salary, hire_date,
 trunc((sysdate - hire_date)/365) 근속연수,
-width_bucket(trunc((sysdate - hire_date)/365),0,20,29) 등급
+width_bucket(trunc((sysdate - hire_date)/365),0,20,29) 등급,
+width_bucket(trunc((sysdate - hire_date)/365),0,20,29)*1000 보너스
+from employees
+order by 보너스 DESC;
+
+
+
+
+--문자함수
+select upper('Hello World') from dual;
+select lower('Hello World') from dual;
+select last_name, salary 
+from employees 
+where lower(last_name)='seo';
+select job_id,INITCAP(job_id) from employees; --앞글자만 대문자
+select job_id, length(job_id) from employees; --길이
+select instr('Hello World','o',6,1) from dual; -- 6번째부터시작해서 1번째 'O'
+select substr('Hello World',3,3) from dual; -- 슬라이싱
+select substr('Hello World',-3,3) from dual; -- 슬라이싱
+select LPAD('Hello World',15,'#') from dual; -- 15는 자릿수
+select RPAD('Hello World',15,'#') from dual; -- 15는 자릿수
+select LTRIM('aaaaaaaaHello Worldaaaaaaa','a') from dual; -- 특정문자제거
+select RTRIM('aaaaaaaaHello Worldaaaaaaa','a') from dual; -- 특정문자제거
+select TRIM('         Hello World     ') from dual; -- 특정문자제거
+select LTRIM('         Hello World     ') from dual; -- 특정문자제거
+select RTRIM('         Hello World     ') from dual; -- 특정문자제거
+
+--기타함수
+select commission_pct,NVL(commission_pct,0)
+from employees; -- null 값 처리
+
+
+select last_name, department_id,
+    case when department_id = 90 then '경영지원'
+    when department_id = 60 then '프로그래머'
+    when department_id = 100 then '인사부'
+    end as 소속 --case가 하나의 컬럼으로 취급
 from employees;
+
+--분석함수 여러가지 기준을 적용해 여러 결과를 return 할 수 있으며
+--처리 대상이 되는 행의 집단을 window 라고 명칭
+--FIRST_VALUE : 첫번째 값을 전체 행에 넣음 
+select first_name 이름, salary 연봉,
+first_value(salary) over(order by salary desc) 최고연봉
+from employees;
+
+--3줄위에 값
+select first_name 이름, salary 연봉,
+first_value(salary) over(order by salary desc rows 3 preceding) 최고연봉
+from employees;
+
+--3줄 위의 값 최저 연봉
+select first_name 이름, salary 연봉,
+first_value(salary) over(order by salary asc rows 3 preceding) 최고연봉
+from employees;
+
+SELECT first_name 이름, salary 연봉,
+last_VALUE(salary) OVER(ORDER BY salary ROWS 3 PRECEDING) 최저연봉
+FROM employees;
+
+
+
+
+-- 위아래 각각2줄까지 마지막 값
+select first_name 이름, salary 연봉,
+last_value(salary) over(order by salary asc rows between 2 preceding and 2 following ) 최고연봉
+from employees;
+
+
+-- 과제
+-- employees 테이블에서 department_id= 50인 직원의 연봉을 내림차순정렬하여 누적 카운트 출력
+select salary,count(*)
+from employees
+where department_id= 50
+group by salary
+order by salary desc;
+
+-- employees 테이블에서 department_id를 기준으로 오름차순 정렬하고 연봉 누적합계 출력
+select department_id,sum(salary)
+from employees
+group by department_id
+order by department_id asc;
+
+-- employees 테이블에서 department_id부서별 직원 연봉순위 출력
+select last_name,department_id,salary,
+RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) 순위
+from employees;
+
 
 
 DESC BOOK;
@@ -201,6 +296,30 @@ WHERE C.CUSTID = O.CUSTID AND O.BOOKID=B.BOOKID AND B.PRICE=20000;
 SELECT C.NAME, O.SALEPRICE
 FROM CUSTOMER C, ORDERS O
 WHERE C.CUSTID = O.CUSTID(+);
+
+--union 합집합
+select first_name 이름, salary 급여 from employees
+where salary<5000
+union all
+select first_name 이름, salary 급여 from employees
+where hire_date < '99/01/01';
+
+--intersect 교집합
+select first_name 이름, salary 급여 from employees
+where salary<5000
+intersect
+select first_name 이름, salary 급여 from employees
+where hire_date < '07/01/01';
+
+--minus 차집합
+select first_name 이름, salary 급여 from employees
+where salary<5000
+minus
+select first_name 이름, salary 급여 from employees
+where hire_date < '07/01/01';
+
+
+
 --[과제] 가장 비싼 도서의 이름을 출력하세요.
 SELECT BOOKNAME
 FROM BOOK
