@@ -1,3 +1,7 @@
+--DML DATA MANIPULATION LANGUAGE
+--SELECT INSERT UPDATE DELET
+--생성   삽입   수정   제거
+
 --ESCAPE문 특수문자출력
 select * from employees where job_id like '%\_A%' escape '\';
 select * from employees where job_id like '%#_A%' escape '#';
@@ -174,15 +178,23 @@ from employees;
 -- employees 테이블에서 department_id= 50인 직원의 연봉을 내림차순정렬하여 누적 카운트 출력
 select salary,count(*)
 from employees
-where department_id= 50
+where department_id = 50
 group by salary
 order by salary desc;
+
+select salary,count(*) over(order by salary desc)
+from employees
+where department_id = 50;
 
 -- employees 테이블에서 department_id를 기준으로 오름차순 정렬하고 연봉 누적합계 출력
 select department_id,sum(salary)
 from employees
 group by department_id
 order by department_id asc;
+
+
+select department_id,sum(salary) over(partition by department_id order by department_id asc)
+from employees;
 
 -- employees 테이블에서 department_id부서별 직원 연봉순위 출력
 select last_name,department_id,salary,

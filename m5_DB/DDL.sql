@@ -1,3 +1,6 @@
+--DDL DATA DEFINITION LANGUAGE 
+--CREATE ALTER DROP TURNCATE 
+--생성   수정  삭제 초기화
 
 --[테이블 생성 규칙]
 
@@ -93,6 +96,8 @@ ALTER TABLE MEMBER2 DROP COLUMN PWD;
 ALTER TABLE MEMBER2 ADD PWD NUMBER;
 
 ALTER TABLE MEMBER2 ADD CONSTRAINT MEMBER2_PK PRIMARY KEY (ID);
+
+
 --트랜잭션
 --SAVEPOINT 이름 : 현재까지의 트랜잭션을 특정 이름으로 지정하는 명령
 --ROLLBACK TO 이름 : 저장되지 않은 데이터를 모두 취소하고 트랜잭션을 종료
