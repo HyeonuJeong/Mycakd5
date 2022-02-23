@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="88768DFD-634F-664F-88D1-BD743597E366" containerWithKeyObject="9920CD04-B3BA-C090-EE75-9B8DF294B88E" localFKIndex="674C0608-9CFA-5D50-06AD-AE8A3F801A3D" name="PURPROD_CUSTDEMO_FK">
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 08:57:21 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<referredTableLongName>SYS.CUSTDEMO</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>686FE59C-FE4B-C623-C391-A7A9AB2EF770</referredTableID>
+<keyObject>D11EEE60-6CB7-EBE4-0365-5BC57D28BDC4</keyObject>
+<referredKeyID>D11EEE60-6CB7-EBE4-0365-5BC57D28BDC4</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>고객번호</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<discriminatorColumn>75D31957-5E26-82F2-419D-2C5BB4039461</discriminatorColumn>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="0D2A7DD4-0860-C967-61DA-D4D74CB7C16E" containerWithKeyObject="9920CD04-B3BA-C090-EE75-9B8DF294B88E" localFKIndex="423CCBC0-4B9B-F226-3739-A6A15BB8AF26" name="PURPROD_PRODCL_FK">
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 08:56:37 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<referredTableLongName>SYS.PRODCL</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>4403B9B8-B03B-0E65-B07E-F2251546CA81</referredTableID>
+<keyObject>CF5259C7-0B1B-7270-0E17-E1AFE966514A</keyObject>
+<referredKeyID>CF5259C7-0B1B-7270-0E17-E1AFE966514A</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>소분류코드</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<discriminatorColumn>A676B9B8-DDE5-F6C7-ADFC-47725B196F0D</discriminatorColumn>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

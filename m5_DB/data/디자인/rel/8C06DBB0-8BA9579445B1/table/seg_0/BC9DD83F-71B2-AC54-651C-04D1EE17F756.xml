@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BC9DD83F-71B2-AC54-651C-04D1EE17F756" schemaObject="D56B97CA-1247-9782-2276-E775C23D6B8C" name="CHANNEL">
+<sourceConnName>PDB%EC%84%9C%EB%B2%84</sourceConnName>
+<sourceObjSchema>SYS</sourceObjSchema>
+<sourceObjName>CHANNEL</sourceObjName>
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:40:14 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="고객번호" id="DD642F7B-DD6A-C507-C894-135600CAF646">
+<sourceConnName>PDB%EC%84%9C%EB%B2%84</sourceConnName>
+<sourceObjSchema>CHANNEL</sourceObjSchema>
+<sourceObjName>고객번호</sourceObjName>
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:40:14 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 BYTE</dataTypeSize>
+<ownDataTypeParameters>10 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F0D17CF7-F3B9-693E-E132-8D6DFEA727E9" referredColumn="75D31957-5E26-82F2-419D-2C5BB4039461"/>
+</associations>
+</Column>
+<Column name="제휴사" id="32E9819F-347F-735F-55CE-403DAB64199D">
+<sourceConnName>PDB%EC%84%9C%EB%B2%84</sourceConnName>
+<sourceObjSchema>CHANNEL</sourceObjSchema>
+<sourceObjName>제휴사</sourceObjName>
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:40:14 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>26 BYTE</dataTypeSize>
+<ownDataTypeParameters>26 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="이용횟수" id="EA01C671-8231-8D01-0632-6AFD0577DDF0">
+<sourceConnName>PDB%EC%84%9C%EB%B2%84</sourceConnName>
+<sourceObjSchema>CHANNEL</sourceObjSchema>
+<sourceObjName>이용횟수</sourceObjName>
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:40:14 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>38</dataTypePrecision>
+<ownDataTypeParameters>,38,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6B7B8A80-7080-C757-98F3-4D8EF286855F" name="CHANNEL_CUSTDEMO_FK">
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 08:55:48 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DD642F7B-DD6A-C507-C894-135600CAF646"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

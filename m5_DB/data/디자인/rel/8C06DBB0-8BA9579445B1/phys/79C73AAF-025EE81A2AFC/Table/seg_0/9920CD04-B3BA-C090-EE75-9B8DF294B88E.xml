@@ -1,0 +1,79 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="PURPROD" directorySegmentName="seg_0" id="9920CD04-B3BA-C090-EE75-9B8DF294B88E">
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:52:30 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<schemaObject>D56B97CA-1247-9782-2276-E775C23D6B8C</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>D6F7BAFE-EE0D-F44A-633A-13BDD7980EC9</segment>
+<tableSpace>824DA34A-F96F-1AA6-58E4-F0B723C54E6E</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="영수증번호" id="06C6A739-BF18-A84B-BFE6-0EBC9B1072FB">
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:52:30 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="제휴사" id="25082C25-B8D1-15F1-6777-775AA987B7C9">
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:52:30 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="대분류코드" id="3A875A79-FB56-CF0A-F025-01997F82CAA7">
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:52:30 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="소분류코드" id="4634EC48-F936-A1D4-25F5-0C60C449D19D">
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:52:30 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="구매일자" id="9135C2F2-7206-D35A-3429-CF88FC7C2B82">
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:52:30 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="구매시간" id="9FA8A1BA-4041-3465-5682-9597799F5708">
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:52:30 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="구매금액" id="B3BA9C7D-0BD5-9CBF-A095-4F916680F579">
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:52:30 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="점포코드" id="C2A3A4F2-7AB4-7504-B889-34CF7104177C">
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:52:30 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="고객번호" id="F2370689-E616-F595-A9A5-652563E08FB2">
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:52:30 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="중분류코드" id="FE179781-6F98-C535-BB7F-E1FEDA7325A7">
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:52:30 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="PURPROD_PRODCL_FK" id="423CCBC0-4B9B-F226-3739-A6A15BB8AF26">
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 08:56:37 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="PURPROD_CUSTDEMO_FK" id="674C0608-9CFA-5D50-06AD-AE8A3F801A3D">
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 08:57:21 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+</TableProxyOraclev12c>

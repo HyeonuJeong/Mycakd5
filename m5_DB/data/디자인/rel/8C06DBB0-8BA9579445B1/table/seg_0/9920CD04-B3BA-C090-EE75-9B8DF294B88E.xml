@@ -1,0 +1,196 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9920CD04-B3BA-C090-EE75-9B8DF294B88E" schemaObject="D56B97CA-1247-9782-2276-E775C23D6B8C" name="PURPROD">
+<sourceConnName>PDB%EC%84%9C%EB%B2%84</sourceConnName>
+<sourceObjSchema>SYS</sourceObjSchema>
+<sourceObjName>PURPROD</sourceObjName>
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:52:30 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="제휴사" id="25082C25-B8D1-15F1-6777-775AA987B7C9">
+<sourceConnName>PDB%EC%84%9C%EB%B2%84</sourceConnName>
+<sourceObjSchema>PURPROD</sourceObjSchema>
+<sourceObjName>제휴사</sourceObjName>
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:52:30 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>26 BYTE</dataTypeSize>
+<ownDataTypeParameters>26 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="영수증번호" id="06C6A739-BF18-A84B-BFE6-0EBC9B1072FB">
+<sourceConnName>PDB%EC%84%9C%EB%B2%84</sourceConnName>
+<sourceObjSchema>PURPROD</sourceObjSchema>
+<sourceObjName>영수증번호</sourceObjName>
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:52:30 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>26 BYTE</dataTypeSize>
+<ownDataTypeParameters>26 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="대분류코드" id="3A875A79-FB56-CF0A-F025-01997F82CAA7">
+<sourceConnName>PDB%EC%84%9C%EB%B2%84</sourceConnName>
+<sourceObjSchema>PURPROD</sourceObjSchema>
+<sourceObjName>대분류코드</sourceObjName>
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:52:30 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>38</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,38,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="중분류코드" id="FE179781-6F98-C535-BB7F-E1FEDA7325A7">
+<sourceConnName>PDB%EC%84%9C%EB%B2%84</sourceConnName>
+<sourceObjSchema>PURPROD</sourceObjSchema>
+<sourceObjName>중분류코드</sourceObjName>
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:52:30 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>26 BYTE</dataTypeSize>
+<ownDataTypeParameters>26 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="소분류코드" id="4634EC48-F936-A1D4-25F5-0C60C449D19D">
+<sourceConnName>PDB%EC%84%9C%EB%B2%84</sourceConnName>
+<sourceObjSchema>PURPROD</sourceObjSchema>
+<sourceObjName>소분류코드</sourceObjName>
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:52:30 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>26 BYTE</dataTypeSize>
+<ownDataTypeParameters>26 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0D2A7DD4-0860-C967-61DA-D4D74CB7C16E" referredColumn="A676B9B8-DDE5-F6C7-ADFC-47725B196F0D"/>
+</associations>
+</Column>
+<Column name="고객번호" id="F2370689-E616-F595-A9A5-652563E08FB2">
+<sourceConnName>PDB%EC%84%9C%EB%B2%84</sourceConnName>
+<sourceObjSchema>PURPROD</sourceObjSchema>
+<sourceObjName>고객번호</sourceObjName>
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:52:30 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>26 BYTE</dataTypeSize>
+<ownDataTypeParameters>26 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="88768DFD-634F-664F-88D1-BD743597E366" referredColumn="75D31957-5E26-82F2-419D-2C5BB4039461"/>
+</associations>
+</Column>
+<Column name="점포코드" id="C2A3A4F2-7AB4-7504-B889-34CF7104177C">
+<sourceConnName>PDB%EC%84%9C%EB%B2%84</sourceConnName>
+<sourceObjSchema>PURPROD</sourceObjSchema>
+<sourceObjName>점포코드</sourceObjName>
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:52:30 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>26 BYTE</dataTypeSize>
+<ownDataTypeParameters>26 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="구매일자" id="9135C2F2-7206-D35A-3429-CF88FC7C2B82">
+<sourceConnName>PDB%EC%84%9C%EB%B2%84</sourceConnName>
+<sourceObjSchema>PURPROD</sourceObjSchema>
+<sourceObjName>구매일자</sourceObjName>
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:52:30 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>38</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,38,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="구매시간" id="9FA8A1BA-4041-3465-5682-9597799F5708">
+<sourceConnName>PDB%EC%84%9C%EB%B2%84</sourceConnName>
+<sourceObjSchema>PURPROD</sourceObjSchema>
+<sourceObjName>구매시간</sourceObjName>
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:52:30 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>38</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,38,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="구매금액" id="B3BA9C7D-0BD5-9CBF-A095-4F916680F579">
+<sourceConnName>PDB%EC%84%9C%EB%B2%84</sourceConnName>
+<sourceObjSchema>PURPROD</sourceObjSchema>
+<sourceObjName>구매금액</sourceObjName>
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:52:30 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>38</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,38,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="423CCBC0-4B9B-F226-3739-A6A15BB8AF26" name="PURPROD_PRODCL_FK">
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 08:56:37 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4634EC48-F936-A1D4-25F5-0C60C449D19D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="674C0608-9CFA-5D50-06AD-AE8A3F801A3D" name="PURPROD_CUSTDEMO_FK">
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 08:57:21 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F2370689-E616-F595-A9A5-652563E08FB2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

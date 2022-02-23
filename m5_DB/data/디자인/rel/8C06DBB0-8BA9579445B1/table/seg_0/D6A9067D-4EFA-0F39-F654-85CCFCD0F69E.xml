@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D6A9067D-4EFA-0F39-F654-85CCFCD0F69E" schemaObject="D56B97CA-1247-9782-2276-E775C23D6B8C" name="MEMBERSHIP">
+<sourceConnName>PDB%EC%84%9C%EB%B2%84</sourceConnName>
+<sourceObjSchema>SYS</sourceObjSchema>
+<sourceObjName>MEMBERSHIP</sourceObjName>
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:46:57 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="고객번호" id="25AF17EB-082B-7AE8-C031-E52C2A2613CD">
+<sourceConnName>PDB%EC%84%9C%EB%B2%84</sourceConnName>
+<sourceObjSchema>MEMBERSHIP</sourceObjSchema>
+<sourceObjName>고객번호</sourceObjName>
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:46:57 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>26 BYTE</dataTypeSize>
+<ownDataTypeParameters>26 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="06E79814-B34A-B54B-7C8B-7EAF9559DF8B" referredColumn="75D31957-5E26-82F2-419D-2C5BB4039461"/>
+</associations>
+</Column>
+<Column name="멤버십명" id="B9675C0E-5331-C12B-EE24-5F78BC9311CB">
+<sourceConnName>PDB%EC%84%9C%EB%B2%84</sourceConnName>
+<sourceObjSchema>MEMBERSHIP</sourceObjSchema>
+<sourceObjName>멤버십명</sourceObjName>
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:46:57 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>26 BYTE</dataTypeSize>
+<ownDataTypeParameters>26 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="가입년월" id="BF36D63C-D53C-1422-E0B6-C33F8A320571">
+<sourceConnName>PDB%EC%84%9C%EB%B2%84</sourceConnName>
+<sourceObjSchema>MEMBERSHIP</sourceObjSchema>
+<sourceObjName>가입년월</sourceObjName>
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 07:46:57 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>38</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,38,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4B9A7B6A-254B-E3B5-9811-3DF3A21FF9EF" name="MEMBERSHIP_CUSTDEMO_FK">
+<createdBy>admin</createdBy>
+<createdTime>2022-02-23 08:54:56 UTC</createdTime>
+<ownerDesignName>디자인</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="25AF17EB-082B-7AE8-C031-E52C2A2613CD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
