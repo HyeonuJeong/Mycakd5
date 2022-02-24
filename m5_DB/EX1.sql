@@ -87,3 +87,51 @@ select cid from CUSTOMER1
 minus
 select cid from ORDERS1;
 
+
+select e.last_name, d.department_name 
+from employees e, departments d
+where lower(e.last_name) = 'seo' and d.department_id=e.department_id;
+
+--커미션을 받는 직원만
+SELECT e.first_name, e.job_id, e.department_id, d.department_name
+FROM employees e,  departments d
+WHERE e.department_id = d.department_id AND e.commission_pct IS NOT NULL;
+
+-- 회계부서 직원목록 
+SELECT e.first_name, d.department_name
+FROM employees e,  departments d
+WHERE e.department_id = d.department_id AND d.department_name = INITCAP('ACCOUNTING');
+
+
+select * from sample1;
+select * from sample2;
+select * from sample3;
+desc sample3
+
+
+desc PURPROD;
+select * from PURPROD;
+
+select YEAR 
+from PURPROD
+GROUP BY YEAR;
+
+select column_name from user_tab_columns;
+
+select sum(구매금액), round(avg(구매금액))
+from purprod
+where year=2014;
+
+select 고객번호
+from purprod
+where year=2014;
+
+CREATE TABLE TFT AS
+SELECT 고객번호, YEAR, SUM(구매금액) 구매합계,round(avg(구매금액)) 구매평균
+FROM PURPROD
+GROUP BY 고객번호, YEAR
+ORDER BY 고객번호, YEAR;
+
+
+select *
+from tft ;
