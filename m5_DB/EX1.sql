@@ -163,7 +163,6 @@ from tft ;
 create table tru as 
 select * from purprod;
 
-select * from tru;
 
 --의식주 의
 update tru set 대분류코드 = 101 
@@ -271,3 +270,6 @@ where 제휴사 = 'D' and 대분류코드 = 102;
 
 update tru set 대분류코드 = 3
 where 제휴사 = 'D' and 대분류코드 = 103;
+
+select * from tru where 제휴사='B';
+
