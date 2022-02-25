@@ -29,6 +29,7 @@ COMMIT;
 
 SELECT * FROM PURPROD;
 COMMIT;
+
 CREATE TABLE PURBYYEAR AS
 SELECT 고객번호, YEAR, SUM(구매금액) 구매액
 FROM PURPROD
@@ -38,10 +39,13 @@ ORDER BY 고객번호;
 SELECT * FROM PURBYYEAR;
 
 
-
+select * from comp;
 
 CREATE TABLE pur_amt AS
 SELECT 고객번호 cusno, sum(구매금액) puramt
 FROM PURPROD
 GROUP BY 고객번호 
 ORDER BY 고객번호; 
+
+
+

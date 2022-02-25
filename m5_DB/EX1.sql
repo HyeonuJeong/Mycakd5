@@ -158,3 +158,116 @@ ORDER BY 고객번호, YEAR;
 
 select *
 from tft ;
+
+
+create table tru as 
+select * from purprod;
+
+select * from tru;
+
+--의식주 의
+update tru set 대분류코드 = 101 
+where 제휴사 = 'B' and 대분류코드 between 29 and 36
+or 제휴사 = 'B' and 대분류코드 between 44 and 45
+or 제휴사 = 'B' and 대분류코드 between 49 and 51
+or 제휴사 = 'B' and 대분류코드 = 66
+or 제휴사 = 'B' and 대분류코드 between 68 and 71
+or 제휴사 = 'B' and 대분류코드 = 90; -- 521
+
+
+-- 식
+update tru set 대분류코드 = 102 
+where 제휴사 = 'B' and 대분류코드 between 1 and 7
+or 제휴사 = 'B' and 대분류코드 between 9 and 16
+or 제휴사 = 'B' and 대분류코드 = 43
+or 제휴사 = 'B' and 대분류코드 between 46 and 48
+or 제휴사 = 'B' and 대분류코드 between 37 and 38
+or 제휴사 = 'B' and 대분류코드 between 52 and 65
+or 제휴사 = 'B' and 대분류코드 = 67
+or 제휴사 = 'B' and 대분류코드 between 72 and 83
+or 제휴사 = 'B' and 대분류코드 = 89
+or 제휴사 = 'B' and 대분류코드 between 91 and 92; -- 1353
+
+-- 주
+update tru set 대분류코드 = 103
+where 제휴사 = 'B' and 대분류코드 = 8
+or 제휴사 = 'B' and 대분류코드 between 17 and 28
+or 제휴사 = 'B' and 대분류코드 between 39 and 42
+or 제휴사 = 'B' and 대분류코드 between 84 and 88; -- 750
+
+
+-- 101,102,103을 보기 쉽게 의식주(1,2,3)순으로 한번더 업데이트
+update tru set 대분류코드 = 1
+where 제휴사 = 'B' and 대분류코드 = 101;
+
+update tru set 대분류코드 = 2
+where 제휴사 = 'B' and 대분류코드 = 102;
+
+update tru set 대분류코드 = 3
+where 제휴사 = 'B' and 대분류코드 = 103;
+-- 1.2.3 으로 바꼈는지 한번더 확인
+
+
+-- 의
+update tru set 대분류코드 = 101
+where 제휴사 = 'A' and 대분류코드 between 2 and 6
+or 제휴사 = 'A' and 대분류코드 = 8;
+
+-- 식
+update tru set 대분류코드 = 102
+where 제휴사 = 'A' and 대분류코드 =1; 
+
+
+--제휴사A
+-- 주
+update tru set 대분류코드 = 103
+where 제휴사 = 'A' and 대분류코드 = 7
+or 제휴사 = 'A' and 대분류코드 = 9; 
+
+-- 코드 1,2,3 으로 수정
+update tru set 대분류코드 = 1
+where 제휴사 = 'A' and 대분류코드 = 101;
+
+update tru set 대분류코드 = 2
+where 제휴사 = 'A' and 대분류코드 = 102;
+
+
+
+
+-- 제휴사 C
+-- 식
+update tru set 대분류코드 = 102
+where 제휴사 = 'C' and 대분류코드 between 1 and 15; 
+--  8,354,801
+
+-- 주
+update tru set 대분류코드 = 103
+where 제휴사 = 'C' and 대분류코드 between 16 and 17; -- 1,024,435
+
+-- 코드 2,3 으로 수정
+update tru set 대분류코드 = 2
+where 제휴사 = 'C' and 대분류코드 = 102;
+
+update tru set 대분류코드 = 3
+where 제휴사 = 'C' and 대분류코드 = 103;
+
+update tru set 대분류코드 = 3
+where 제휴사 = 'A' and 대분류코드 = 103;
+
+
+-- 제휴사 D
+-- 식
+update tru set 대분류코드 = 102
+where 제휴사 = 'D' and 대분류코드 = 4 ; 
+
+-- 주
+update tru set 대분류코드 = 103
+where 제휴사 = 'D' and 대분류코드 between 5 and 8
+or 제휴사 = 'D' and 대분류코드 between 1 and 3; 
+
+-- 코드 2,3 으로 수정
+update tru set 대분류코드 = 2
+where 제휴사 = 'D' and 대분류코드 = 102;
+
+update tru set 대분류코드 = 3
+where 제휴사 = 'D' and 대분류코드 = 103;
