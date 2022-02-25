@@ -88,6 +88,29 @@ minus
 select cid from ORDERS1;
 
 
+--과제
+ --Q. HR EMPLOYEES 테이블에서 escape 옵션을 사용하여 아래와 같이 출력되는 SQL문을 작성하세요. 
+select * from employees where job_id like '%!_A%' escape '!';
+
+ --Q.  employees 테이블에서 이름에 FIRST_NAME에 LAST_NAME을 붙여서 'NAME' 컬럼명으로 출력하세요.
+--예) Steven King
+ select concat(concat(first_name,' '),last_name) name
+ from employees;
+ 
+
+--Q. Seo라는 사람의 부서명을 출력하세요.
+select e.last_name, e.department_id, d.department_name
+from employees e,departments d
+where last_name='Seo' and e.department_id = d.department_id;
+
+--Q. HR테이블을 분석해서 전체 현황을 설명 할 수 있는 요약 테이블 3개 작성하세요
+--예) 부서별 연봉순위
+SELECT e.first_name, e.job_id, e.department_id, d.department_name
+FROM employees e,  departments d
+WHERE e.department_id = d.department_id
+AND e.commission_pct IS NOT NULL;
+
+
 select e.last_name, d.department_name 
 from employees e, departments d
 where lower(e.last_name) = 'seo' and d.department_id=e.department_id;

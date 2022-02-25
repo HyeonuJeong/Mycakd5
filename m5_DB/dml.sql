@@ -1,6 +1,6 @@
 --DML DATA MANIPULATION LANGUAGE
 --SELECT INSERT UPDATE DELET
---생성   삽입   수정   제거
+--조회   삽입   수정   제거
 
 --ESCAPE문 특수문자출력
 select * from employees where job_id like '%\_A%' escape '\';
@@ -12,7 +12,7 @@ select * from employees where manager_id in (101,102,103);
 
 
 --between and : and 대신사용, 미만, 초과와 같이 포함하지 않는 경우 and를 사용
-select * from employees where manager_id =101 and manager_id =102 and manager_id =103;
+select * from employees where manager_id =101 or manager_id =102 or manager_id =103;
 select * from employees where manager_id between 101 and 103;
 
 -- is null/ is not null
@@ -41,14 +41,14 @@ select sysdate from dual;
 select sysdate+1 from dual;
 select last_name,round((sysdate - hire_date)) from employees; -- 근속일수
 select last_name,trunc((sysdate - hire_date)/365) from employees; -- 근속년수 만으로 채워야하니 trunc
-select last_name, hire_date,add_months(hire_date,6) from employees;
+select last_name, hire_date, add_months(hire_date,6) from employees;
 select last_day(sysdate) from dual; -- 달의 마지막날  출력
 select hire_date, next_day(hire_date,'월') from employees; -- 다음 월요일
 select sysdate, next_day(sysdate,'금요일') from dual;
 
 
 --months_between()
-select last_name, sysdate,hire_date,trunc(months_between(sysdate,hire_date)) 근속개월 from employees;
+select last_name, sysdate, hire_date, trunc(months_between(sysdate,hire_date)) 근속개월 from employees;
 
 --형변환 함수
 -- number character date
@@ -86,16 +86,16 @@ select to_char(sysdate, 'day') from dual;
 --MI 오른쪽에 ? 기호 표시
 --PR 음수값을 <>FH VYGUS
 --EEEE 과학적 표현
---공백을 0으로 표현
+--B 공백을 0으로 표현
 --L 지역통화
 
-select salary, to_char(salary, '009999') from employees;
+select salary, to_char(salary, '0999999') from employees;
 select to_char(-salary, '009999PR') from employees;
 select to_char(1111, '99.99EEEE') from DUAL;
 select to_char(1111, 'B9999.99') from dual;
 select to_char(1111, 'L9999.99') from dual;
 
---width_bucket() 지정값, 최소값, 최대값, bucket 개수
+--width_bucket(지정값, 최소값, 최대값, bucket 개수)
 select width_bucket(92,0,100,10) from dual;
 select last_name,salary,width_bucket(salary,0,20000,4) from employees;
 
@@ -124,24 +124,23 @@ select job_id, length(job_id) from employees; --길이
 select instr('Hello World','o',6,1) from dual; -- 6번째부터시작해서 1번째 'O'
 select substr('Hello World',3,3) from dual; -- 슬라이싱
 select substr('Hello World',-3,3) from dual; -- 슬라이싱
-select LPAD('Hello World',15,'#') from dual; -- 15는 자릿수
+select LPAD('Hello World',15,'#') from dual; -- 15는 자릿수 문장 빈칸에 #으로 채움 (Hello World 11) + (#### 4)
 select RPAD('Hello World',15,'#') from dual; -- 15는 자릿수
 select LTRIM('aaaaaaaaHello Worldaaaaaaa','a') from dual; -- 특정문자제거
 select RTRIM('aaaaaaaaHello Worldaaaaaaa','a') from dual; -- 특정문자제거
-select TRIM('         Hello World     ') from dual; -- 특정문자제거
+select TRIM('         Hello World     ') from dual; -- 특정문자제거 2번째 인자가 없으면 공백제거
 select LTRIM('         Hello World     ') from dual; -- 특정문자제거
 select RTRIM('         Hello World     ') from dual; -- 특정문자제거
 
 --기타함수
-select commission_pct,NVL(commission_pct,0)
-from employees; -- null 값 처리
+select commission_pct,NVL(commission_pct,0) from employees; -- null 값을 2번째 파라미터(,0)으로 처리
 
 
 select last_name, department_id,
     case when department_id = 90 then '경영지원'
     when department_id = 60 then '프로그래머'
     when department_id = 100 then '인사부'
-    end as 소속 --case가 하나의 컬럼으로 취급
+    end as 소속 --case가 하나의 속성으로 취급
 from employees;
 
 --분석함수 여러가지 기준을 적용해 여러 결과를 return 할 수 있으며
@@ -305,6 +304,7 @@ WHERE C.CUSTID = O.CUSTID AND O.BOOKID=B.BOOKID AND B.PRICE=20000;
 
 --[과제] 도서를 구매하지 않은 고객을 포함하여 고객의 이름과 고객이 주문한 도서의 판매가격을 구하세요.
 --outer join 조인조건을 만족하지 못하더라도 해당 행을 나타냄
+--(+) outerjoin null값도 표현 
 SELECT C.NAME, O.SALEPRICE
 FROM CUSTOMER C, ORDERS O
 WHERE C.CUSTID = O.CUSTID(+);
@@ -497,7 +497,7 @@ select job_id,sum(salary) 연봉총합,max(salary) 최고연봉 ,min(salary) 최저연봉
 , floor(avg(salary)) 평균연봉 
 from employees
 
-
+--floor 반내림
 select job_id,sum(salary) 연봉총합,max(salary) 최고연봉 ,min(salary) 최저연봉 
 , floor(avg(salary)) 평균연봉 
 from employees
@@ -588,7 +588,7 @@ where e.employee_id=m.manager_id(+);
 -- 2005년 이후 입사한 직원 
 SELECT employee_id , last_name , hire_date,department_name , job_title
 FROM employees e, departments d, jobs j
-WHERE e.department_id=d.department_id AND e.job_id=j.job_id and hire_date>='2005/01/01';
+WHERE e.department_id=d.department_id AND e.job_id=j.job_id and hire_date>=to_date('2005/01/01');
 
 --평균급여보다 높은 직원
 select salary, last_name
@@ -603,7 +603,7 @@ SELECT last_name , hire_date , department_id
 FROM employees
 where last_name like 'King';
 
-select employee_id, last_name,
+select employee_id, last_name,salary,
 case
     when salary > 20000 then '대표이사'
     when salary > 15000 then '이사'

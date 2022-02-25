@@ -54,17 +54,25 @@ ALTER TABLE MEMBER ADD TEXT NCLOB; --nclob 대형 데이터형
 INSERT INTO MEMBER(ID, PWD,TEXT) VALUES('200903','112','정치는 국민을 위해 존재한다');
 
 --기존 테이블을 이용하여 새로운 테이블을 생성
-CREATE TABLE MEMBER1 AS SELECT * FROM MEMBER;
+CREATE TABLE MEMBER1 AS 
+SELECT * FROM MEMBER;
+
 SELECT * FROM MEMBER1;
+
 DESC member1;
-CREATE TABLE member2 AS SELECT * FROM member1 WHERE 1=0;
+
+CREATE TABLE member2 AS 
+SELECT * FROM member1 WHERE 1=0;
+
 DESC member2;
 SELECT * FROM MEMBER2;
+
 --테이블의 모근 row 삭제
 TRUNCATE TABLE member1;
 
 --테이블 속성 및 타입 조회
 DESC MEMBER;
+
 --테이블 리스트 조회
 SELECT * FROM TABS;
 
@@ -98,25 +106,30 @@ ALTER TABLE MEMBER2 ADD PWD NUMBER;
 ALTER TABLE MEMBER2 ADD CONSTRAINT MEMBER2_PK PRIMARY KEY (ID);
 
 
---트랜잭션
---SAVEPOINT 이름 : 현재까지의 트랜잭션을 특정 이름으로 지정하는 명령
---ROLLBACK TO 이름 : 저장되지 않은 데이터를 모두 취소하고 트랜잭션을 종료
---COMMIT : 저장되지 않은 모든 제이터베이스를 저장하고 현재의 트랜잭션을 종료
+--테이블명 : PLAYER
+--테이블 설명 : K-리그 선수들의 정보를 가지고 있는 테이블
+--칼럼명 : PLAYER_ID (선수ID) 문자 고정 자릿수 7자리,
+--PLAYER_NAME (선수명) 문자 가변 자릿수 20자리,
+--TEAM_ID (팀ID) 문자 고정 자릿수 3자리,
+--JOIN_YYYY (입단년도) 문자 고정 자릿수 4자리,
+--POSITION (포지션) 문자 가변 자릿수 10자리,
+--BACK_NO (등번호) 숫자 2자리,
+--NATION (국적) 문자 가변 자릿수 20자리,
+--BIRTH_DATE (생년월일) 날짜,
+--제약조건 : 기본키(PRIMARY KEY) :  PLAYER_ID
+--(제약조건명은 PLAYER_PK)
+--값이 반드시 존재 (NOT NULL) : PLAYER_NAME, TEAM_ID
 
-SELECT * FROM member1;
-TRUNCATE TABLE member1;
-COMMIT;
+CREATE TABLE PLAYER
+(
+PLAYER_ID   CHAR(7) ,
+PLAYER_NAME VARCHAR2(20) NOT NULL,
+TEAM_ID     CHAR(3) NOT NULL,
+JOIN_YYYY CHAR(3),
+POSITION VARCHAR2(10),
+BACK_NO NCHAR(2),
+NATION VARCHAR2(20),
+BIRTH_DATE DATE
+);
 
-INSERT INTO member1 (ID, PWD, NAME) VALUES('200901','111','KEVIN');
-SAVEPOINT SV1;
-INSERT INTO member1 (ID, PWD, NAME, AGE) VALUES('200902','112','JAMES',25);
-UPDATE member1 SET PWD='121' WHERE NAME='KEVIN';
-UPDATE member1 SET PWD='122', AGE='20' WHERE ID='200902';
-SAVEPOINT SV2;
-INSERT INTO member1 (ID, PWD, NAME, AGE) VALUES('200903','113','SUSAN',35);
---ROLLBACK TO SV1;
-UPDATE member1 SET PWD='131' WHERE NAME='KEVIN';
-ROLLBACK TO SV2;
-DELETE member1 WHERE ID = '200901';
-DELETE member1 WHERE ID = '200902';
-COMMIT;
+ALTER TABLE PLAYER ADD CONSTRAINT PLAYER_PK PRIMARY KEY (PLAYER_ID);
