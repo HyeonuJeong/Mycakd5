@@ -39,6 +39,7 @@ ORDER BY 고객번호;
 SELECT * FROM PURBYYEAR;
 
 
+
 select * from comp;
 
 CREATE TABLE pur_amt AS
@@ -46,6 +47,7 @@ SELECT 고객번호 cusno, sum(구매금액) puramt
 FROM PURPROD
 GROUP BY 고객번호 
 ORDER BY 고객번호; 
+
 
 
 

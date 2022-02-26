@@ -157,7 +157,7 @@ ORDER BY 고객번호, YEAR;
 
 
 select *
-from tft ;
+from purprod;
 
 
 create table tru as 
@@ -271,5 +271,40 @@ where 제휴사 = 'D' and 대분류코드 = 102;
 update tru set 대분류코드 = 3
 where 제휴사 = 'D' and 대분류코드 = 103;
 
-select * from tru where 제휴사='B';
+COMMIT;
 
+-- 성별 이용률
+select t.대분류코드, count(성별)
+from tru t, demo d
+where t.고객번호=d.고객번호 and 성별= 'F'
+group by 대분류코드
+union all
+select t.대분류코드, count(성별)
+from tru t, demo d
+where t.고객번호=d.고객번호 and 성별= 'M'
+group by 대분류코드;
+
+
+
+-- 나이별 이용률 -> '19세이하' 만 나이별로 바꾸면댐
+select t.대분류코드, count(연령대)
+from tru t, demo d
+where t.고객번호=d.고객번호 and 연령대= '19세이하'
+group by 대분류코드;
+
+
+
+select *
+from demo;
+
+
+select 고객번호, count(이용년월)
+from comp
+group by 고객번호
+order by 고객번호;
+
+select * from mem;
+
+select 고객번호, 멤버십명
+from mem
+order by 고객번호;
