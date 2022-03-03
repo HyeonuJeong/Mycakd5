@@ -1,0 +1,64 @@
+import re
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import MinMaxScaler
+
+
+
+def fillnas(df):
+    def callname(x):
+        m = re.compile('[A-Za-z]+[.]')
+        p = re.findall(m,x)
+        return p[0]
+    
+    df['Callname']=df.Name.apply(lambda x:callname(x))
+    
+    df1 = df.loc[df.Age.isnull()]
+    age_nulllist = list(set(df1.Callname.values.tolist()))
+    
+    df2 = df.loc[df.Age.notnull()]
+    pivot = pd.pivot_table(df2, index = 'Callname', values = 'Age',aggfunc = 'mean')
+    
+    for age in age_nulllist:
+        df.loc[(df.Age.isnull())&(df.Callname == age),['Age']]=(pivot.loc[age][0])
+        
+    df['Embarked'].fillna(method = 'ffill',inplace=True)
+    
+    df3 = df.loc[df.Cabin.notnull()]
+
+    df3['Cabins'] = df3['Cabin'].str[:1]
+    df4 = df.loc[df.Cabin.isnull()]
+    
+    for i in range(1,4):
+        df33 = df3.loc[df3.Pclass == i]
+        cabin_fill_list=list(set(df33.Cabins.values.tolist()))
+        df44 = df4.loc[df4.Pclass == i]
+        fill_index = list(df44.index)
+        for index in fill_index:
+            df.loc[index,'Cabin'] = np.random.choice(cabin_fill_list)
+            
+    return df
+
+# 불필요 항목 제거
+def drop_feat(df):
+    df.drop(['PassengerId','Name','Ticket','Callname'],axis=1,inplace = True)
+    return df
+
+def format_features(df):
+    df['Cabin'] = df['Cabin'].str[:1]
+    features = ['Cabin','Sex','Embarked']
+    for feature in features:
+        le = LabelEncoder()
+        le = le.fit(df[feature])
+        df[feature] = le.transform(df[feature])
+    scaler = MinMaxScaler()
+    scaler.fit(df[['Fare']])
+    fare_scaled = scaler.transform(df[['Fare']])
+    df['Fare'] = fare_scaled
+    
+    return df
+
+def transform_features(df):
+    df = fillnas(df)
+    df = drop_feat(df)
+    df = format_features(df)
+    return df
