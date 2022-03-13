@@ -25,10 +25,64 @@ GROUP BY YEAR;
 
 ALTER TABLE PURPROD ADD YEAR NUMBER;
 UPDATE PURPROD SET YEAR=substr(구매일자,1,4);
+
+ALTER TABLE PURPROD ADD 반기 varchar2 (10);
+UPDATE PURPROD SET 반기=(CASE WHEN substr(구매일자,1,6)<201407  THEN '14ss'
+        WHEN substr(구매일자,1,6)<201501  THEN '14fw'
+        WHEN substr(구매일자,1,6)<201507  THEN '15ss'
+        ELSE '15fw'
+    END);
 COMMIT;
 
-SELECT * FROM PURPROD;
-COMMIT;
+CREATE TABLE onlyb AS
+SELECT * FROM PURPROD
+where 제휴사='B';
+
+
+
+SELECT * FROM onlyb;
+
+--분류코드별 
+SELECT 고객번호,소분류코드,count(구매일자) 구매횟수 ,sum(구매금액) 총구매액 FROM onlyb
+group by 소분류코드,고객번호
+order by 소분류코드;
+
+
+
+drop table halfyear;
+CREATE TABLE halfyear AS
+select 고객번호,반기, count(구매일자) 구매횟수 ,sum(구매금액) 총구매액
+from onlyb
+group by 고객번호,반기
+order by 고객번호;
+
+SELECT * FROM halfyear;
+
+--반기별 구매횟수 및 구매금액
+--횟수는 늘었으나 구매액은 줄어듬 이슈발생?
+select * from onlyb;
+SELECT year, count(구매일자) 구매횟수 ,sum(구매금액) 구매금액
+FROM onlyb
+group by year;
+
+-- 이슈가 아닌거같다. 이슈close
+SELECT 반기,sum(구매횟수),sum(총구매액) FROM halfyear
+group by 반기;
+
+SELECT 고객번호,반기,sum(구매횟수),sum(총구매액) FROM halfyear
+group by 반기,고객번호;
+
+-- 품목별  구매횟수 및 구매금액 
+SELECT 소분류코드,count(구매일자) 구매횟수 ,sum(구매금액) 구매금액
+FROM onlyb
+group by 소분류코드
+order by 소분류코드;
+
+
+
+
+select * from demo order by 고객번호;
+
 
 CREATE TABLE PURBYYEAR AS
 SELECT 고객번호, YEAR, SUM(구매금액) 구매액
@@ -47,7 +101,5 @@ SELECT 고객번호 cusno, sum(구매금액) puramt
 FROM PURPROD
 GROUP BY 고객번호 
 ORDER BY 고객번호; 
-
-
 
 
