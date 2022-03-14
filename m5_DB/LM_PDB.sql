@@ -59,13 +59,13 @@ order by 고객번호;
 SELECT * FROM halfyear;
 
 --반기별 구매횟수 및 구매금액
---횟수는 늘었으나 구매액은 줄어듬 이슈발생?
+--구매횟수는 늘었으나 구매액은 줄어듬 이슈발생?
 select * from onlyb;
 SELECT year, count(구매일자) 구매횟수 ,sum(구매금액) 구매금액
 FROM onlyb
 group by year;
 
--- 이슈가 아닌거같다. 이슈close
+-- 이슈close
 SELECT 반기,sum(구매횟수),sum(총구매액) FROM halfyear
 group by 반기;
 
