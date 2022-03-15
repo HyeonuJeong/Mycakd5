@@ -34,27 +34,50 @@ UPDATE PURPROD SET 반기=(CASE WHEN substr(구매일자,1,6)<201407  THEN '14ss'
     END);
 COMMIT;
 
+ALTER TABLE s_pur_copy ADD 분기 varchar2 (10);
+UPDATE s_pur_copy SET 분기=(CASE WHEN substr(구매일자,1,6)<201404  THEN '14_1'
+        WHEN substr(구매일자,1,6)<201407  THEN '14_2'
+        WHEN substr(구매일자,1,6)<201410  THEN '14_3'
+        WHEN substr(구매일자,1,6)<201501  THEN '14_4'
+        WHEN substr(구매일자,1,6)<201504  THEN '15_1'
+        WHEN substr(구매일자,1,6)<201507  THEN '15_2'
+        WHEN substr(구매일자,1,6)<201510  THEN '15_3'
+        ELSE '15_4' 
+    END);
+COMMIT;
+
 CREATE TABLE onlyb AS
 SELECT * FROM PURPROD
 where 제휴사='B';
 
-
-
-SELECT * FROM onlyb;
+SELECT * FROM s_pur_copy;
 
 --분류코드별 
-SELECT 고객번호,소분류코드,count(구매일자) 구매횟수 ,sum(구매금액) 총구매액 FROM onlyb
+SELECT 고객번호,소분류코드,count(구매일자) 구매횟수 ,sum(구매금액) 총구매액,round(SUM(구매금액)/count(구매일자)) 
+FROM s_pur_copy
 group by 소분류코드,고객번호
-order by 소분류코드;
-
-
-
-drop table halfyear;
-CREATE TABLE halfyear AS
-select 고객번호,반기, count(구매일자) 구매횟수 ,sum(구매금액) 총구매액
-from onlyb
-group by 고객번호,반기
 order by 고객번호;
+
+--년도별
+SELECT 고객번호, YEAR,SUM(구매금액) 구매금액, count(구매일자) 구매횟수,round(SUM(구매금액)/count(구매일자))
+FROM s_pur_copy
+GROUP BY 고객번호, YEAR
+ORDER BY 고객번호;
+
+--분기별
+select 고객번호,분기, count(구매일자) 구매횟수 ,sum(구매금액) 총구매액,round(SUM(구매금액)/count(구매일자))
+from s_pur_copy
+group by 고객번호,분기
+order by 고객번호;
+
+--반기별
+select 고객번호,반기, count(구매일자) 구매횟수 ,sum(구매금액) 총구매액,round(SUM(구매금액)/count(구매일자))
+from s_pur_copy
+group by 고객번호,반기
+order by 고객번호,반기 DESC;
+
+SELECT *
+from s_pur_copy;
 
 SELECT * FROM halfyear;
 
@@ -80,7 +103,6 @@ order by 소분류코드;
 
 
 
-
 select * from demo order by 고객번호;
 
 
@@ -94,7 +116,12 @@ SELECT * FROM PURBYYEAR;
 
 
 
-select * from comp;
+SELECT 고객번호, 
+FROM PURPROD
+GROUP BY 고객번호, YEAR
+ORDER BY 고객번호;
+
+select * from PURPROD;
 
 CREATE TABLE pur_amt AS
 SELECT 고객번호 cusno, sum(구매금액) puramt
@@ -102,4 +129,35 @@ FROM PURPROD
 GROUP BY 고객번호 
 ORDER BY 고객번호; 
 
+
+
+--시즈날리티 보정값
+create table s_pur_copy as
+select * from purprod;
+
+select * from s_pur_copy;
+
+update s_pur_copy set 구매금액 = 구매금액/1.01620302175834
+where 구매일자 between 20140101 and 20140331; --3,217,669
+
+update s_pur_copy set 구매금액 = 구매금액/0.970792475064181
+where 구매일자 between 20140401 and 20140630; --3,491,713개
+
+update s_pur_copy set 구매금액 = 구매금액/0.885105845713564
+where 구매일자 between 20140701 and 20140930; --3,563,754
+
+update s_pur_copy set 구매금액 = 구매금액/1.12760405706831
+where 구매일자 between 20141001 and 20141231; -- 3,598,378
+
+update s_pur_copy set 구매금액 = 구매금액/0.988770710623332
+where 구매일자 between 20150101 and 20150331; --3,619,223
+
+update s_pur_copy set 구매금액 = 구매금액/0.932539514386203
+where 구매일자 between 20150401 and 20150630;  --3,854,875
+
+update s_pur_copy set 구매금액 = 구매금액/0.88791897961778
+where 구매일자 between 20150701 and 20150930;  --3,795,633
+
+update s_pur_copy set 구매금액 = 구매금액/1.2103055214204
+where 구매일자 between 20151001 and 20151231; --
 

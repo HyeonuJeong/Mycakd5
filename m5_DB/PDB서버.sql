@@ -1,4 +1,4 @@
-SELECT * FROM onlyb order by 소분류코드; 
+SELECT * FROM s_pur_copy order by 소분류코드; 
 SELECT * FROM custdemo;
 SELECT * FROM prodcl;
 
@@ -6,12 +6,12 @@ SELECT * FROM comp;
 SELECT * FROM membership;
 SELECT * FROM channel;
 
---create table onlyb as select * from onlyb;
+--create table s_pur_copy as select * from s_pur_copy;
 -- create table 새로만들 테이블 명 as select * from 대분류코드 있는 본인의 테이블명
-select * from onlyb;
+select * from s_pur_copy;
 -- A제휴사
 -- 편의품 1
-update onlyb set 소분류코드 = 1 
+update s_pur_copy set 소분류코드 = 1 
 where 제휴사 = 'A' and 소분류코드 between 'A010101' and 'A010624'
 or 제휴사 = 'A' and 소분류코드 between 'A010656'  and 'A011004'
 or 제휴사 = 'A' and 소분류코드 between 'A090101'  and 'A090105'
@@ -20,7 +20,7 @@ or 제휴사 = 'A' and 소분류코드 between 'A090107'  and 'A090310'
 or 제휴사 = 'A' and 소분류코드 = 'A030112';
 
 -- 선매품 2
-update onlyb set 소분류코드 = 2 
+update s_pur_copy set 소분류코드 = 2 
 where 제휴사 = 'A' and 소분류코드 between 'A020101'  and 'A020603'
 or 제휴사 = 'A' and 소분류코드 between 'A020607'  and 'A030109'
 or 제휴사 = 'A' and 소분류코드 = 'A030111'
@@ -30,13 +30,13 @@ or 제휴사 = 'A' and 소분류코드 between 'A090311'  and 'A090610'
 or 제휴사 = 'A' and 소분류코드 = 'A030113';
 
 -- 전문품 3
-update onlyb set 소분류코드 = 3
+update s_pur_copy set 소분류코드 = 3
 where 제휴사 = 'A' and 소분류코드 between 'A070401'  and 'A070403'
 or 제휴사 = 'A' and 소분류코드 between 'A080101'  and 'A080125'
 or 제휴사 = 'A' and 소분류코드 = 'A090701' ;
 
 -- 기타 4
-update onlyb set 소분류코드 = 4
+update s_pur_copy set 소분류코드 = 4
 where 제휴사 = 'A' and 소분류코드 between 'A010625'  and 'A010655'
 or 제휴사 = 'A' and 소분류코드 between 'A011101'  and 'A011109'
 or 제휴사 = 'A' and 소분류코드 = 'A030114'
@@ -45,8 +45,8 @@ or 제휴사 = 'A' and 소분류코드 = 'A011101'
 or 제휴사 = 'A' and 소분류코드 = 'A090106';
 
 -- B제휴사
-select * from onlyb where 제휴사 = 'B';
-update onlyb set 소분류코드 = 1 
+select * from s_pur_copy where 제휴사 = 'B';
+update s_pur_copy set 소분류코드 = 1 
 where 제휴사 = 'B' and 소분류코드 between 'B010101' and 'B050512'
 or 제휴사 = 'B' and 소분류코드 between 'B050701'  and 'B071101'
 or 제휴사 = 'B' and 소분류코드 between 'B090201'  and 'B130211'
@@ -78,7 +78,7 @@ or 제휴사 = 'B' and 소분류코드 between 'B870301'  and 'B870302'
 or 제휴사 = 'B' and 소분류코드 between 'B870403'  and 'B870703'
 or 제휴사 = 'B' and 소분류코드 between 'B890101'  and 'B920603'; -- 1734
 
-update onlyb set 소분류코드 = 2 
+update s_pur_copy set 소분류코드 = 2 
 where 제휴사 = 'B' and 소분류코드 between 'B050601' and 'B050607'
 or 제휴사 = 'B' and 소분류코드 between 'B130301'  and 'B130306'
 or 제휴사 = 'B' and 소분류코드 between 'B200701'  and 'B200705'
@@ -111,12 +111,12 @@ or 제휴사 = 'B' and 소분류코드 between 'B870201'  and 'B870203'
 or 제휴사 = 'B' and 소분류코드 between 'B870401'  and 'B870402'
 or 제휴사 = 'B' and 소분류코드 between 'B880101'  and 'B880302'; -- 762
 
-update onlyb set 소분류코드 = 3 
+update s_pur_copy set 소분류코드 = 3 
 where 제휴사 = 'B' and 소분류코드 between 'B450101' and 'B450206'
 or 제휴사 = 'B' and 소분류코드 between 'B450401'  and 'B450402'
 or 제휴사 = 'B' and 소분류코드 = 'B450703'; -- 14
 
-update onlyb set 소분류코드 = 4 
+update s_pur_copy set 소분류코드 = 4 
 where 제휴사 = 'B' and 소분류코드 between 'B080101' and 'B090103'
 or 제휴사 = 'B' and 소분류코드 = 'B260102'
 or 제휴사 = 'B' and 소분류코드 between 'B260104'  and 'B260105'
@@ -127,7 +127,7 @@ or 제휴사 = 'B' and 소분류코드 between 'B510401'  and 'B510503'
 or 제휴사 = 'B' and 소분류코드 between 'B670101'  and 'B670405'; -- 114
 
 -- C제휴사
-update onlyb set 소분류코드 = 1 
+update s_pur_copy set 소분류코드 = 1 
 where 제휴사 = 'C' and 소분류코드 between 'C010101' and 'C130603'
 or 제휴사 = 'C' and 소분류코드 between 'C130701'  and 'C170310'
 or 제휴사 = 'C' and 소분류코드 between 'C170316'  and 'C170317'
@@ -139,7 +139,7 @@ or 제휴사 = 'C' and 소분류코드 = 'C170660'
 or 제휴사 = 'C' and 소분류코드 between 'C170662'  and 'C170663'
 or 제휴사 = 'C' and 소분류코드 between 'C170665'  and 'C170701'; -- 900
 
-update onlyb set 소분류코드 = 2 
+update s_pur_copy set 소분류코드 = 2 
 where 제휴사 = 'C' and 소분류코드 between 'C130604' and 'C130608'
 or 제휴사 = 'C' and 소분류코드 between 'C170311'  and 'C170315'
 or 제휴사 = 'C' and 소분류코드 between 'C170318'  and 'C170325'
@@ -151,15 +151,15 @@ or 제휴사 = 'C' and 소분류코드 = 'C170661'
 or 제휴사 = 'C' and 소분류코드 = 'C170664'; -- 87
 
 -- 제휴사 D
-update onlyb set 소분류코드 = 1 
+update s_pur_copy set 소분류코드 = 1 
 where 제휴사 = 'D' and 소분류코드 between 'D010101' and 'D020504'
 or 제휴사 = 'D' and 소분류코드 between 'D030201'  and 'D050205'
 or 제휴사 = 'D' and 소분류코드 between 'D060101'  and 'D060501'
 or 제휴사 = 'D' and 소분류코드 between 'D070101'  and 'D080401'; -- 136
 
-update onlyb set 소분류코드 = 2 
+update s_pur_copy set 소분류코드 = 2 
 where 제휴사 = 'D' and 소분류코드 between 'D030101' and 'D030103'
 or 제휴사 = 'D' and 소분류코드 between 'D050301'  and 'D050302'
 or 제휴사 = 'D' and 소분류코드 between 'D060502'  and 'D060801'; -- 9
 
-select * from onlyb where 제휴사 = 'D';
+select * from s_pur_copy where 제휴사 = 'D';
