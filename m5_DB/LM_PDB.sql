@@ -76,6 +76,12 @@ from s_pur_copy
 group by 고객번호,반기
 order by 고객번호,반기 DESC;
 
+--제휴사별
+select 고객번호,제휴사, count(구매일자) 구매횟수 ,sum(구매금액) 총구매액,round(SUM(구매금액)/count(구매일자))
+from s_pur_copy
+group by 고객번호,제휴사
+order by 고객번호;
+
 SELECT *
 from s_pur_copy;
 
