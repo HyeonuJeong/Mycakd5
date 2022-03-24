@@ -6,6 +6,8 @@ SELECT * FROM comp;
 SELECT * FROM membership;
 SELECT * FROM channel;
 
+
+
 --create table s_pur_copy as select * from s_pur_copy;
 -- create table 새로만들 테이블 명 as select * from 대분류코드 있는 본인의 테이블명
 select * from s_pur_copy;
@@ -34,7 +36,9 @@ update s_pur_copy set 소분류코드 = 3
 where 제휴사 = 'A' and 소분류코드 between 'A070401'  and 'A070403'
 or 제휴사 = 'A' and 소분류코드 between 'A080101'  and 'A080125'
 or 제휴사 = 'A' and 소분류코드 = 'A090701' ;
-
+drop table purbyyear;
+drop table S_PUR_COPY;
+commit;
 -- 기타 4
 update s_pur_copy set 소분류코드 = 4
 where 제휴사 = 'A' and 소분류코드 between 'A010625'  and 'A010655'
