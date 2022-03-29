@@ -82,12 +82,14 @@ where 분기 not in ('14_1','14_2','14_3','14_4')
 group by 상품분류, 고객번호, 분기
 order by 고객번호;
 
+
+-- 1~6기만
 select 고객번호,분기,상품분류,count(구매일자) 구매횟수 ,sum(구매금액) 총구매액
 from (SELECT * FROM PURPROD S,jbu P 
 where P.기준분류=S.소분류코드)
-where 분기 not in ('15_1','15_2','15_3','15_4')
+where 분기 not in ('15_3','15_4')
 group by 상품분류, 고객번호, 분기
-order by 고객번호;
+order by 고객번호);
 
 
 select 고객번호,상품분류, count(구매일자) 구매횟수 ,sum(구매금액) 총구매액
@@ -97,6 +99,23 @@ where 분기 not in '15_4'
 group by 고객번호,상품분류
 order by 고객번호;
 
+select 고객번호,사분류코드, count(구매일자) 구매횟수 ,sum(구매금액) 총구매액
+from PURPROD
+where 분기 not in '15_4'
+group by 고객번호,사분류코드
+order by 고객번호;
+
+select 고객번호,제휴사, count(구매일자) 구매횟수 ,sum(구매금액) 총구매액
+from PURPROD
+where 분기 not in '15_4'
+group by 고객번호,제휴사
+order by 고객번호;
+
+select 고객번호,분기, count(구매일자) 구매횟수 ,sum(구매금액) 총구매액
+from PURPROD
+where 분기 not in '1  5_4'
+group by 고객번호,분기
+order by 고객번호;
 
 --분류코드별 
 SELECT 고객번호,소분류코드,count(구매일자) 구매횟수 ,sum(구매금액) 총구매액,round(SUM(구매금액)/count(구매일자)) 
@@ -134,7 +153,7 @@ order by 고객번호;
 
 
 SELECT *
-from s_pur_copy;
+from purprod;
 
 SELECT * FROM halfyear;
 
