@@ -1,0 +1,28 @@
+반도체
+
+
+도메인 회로도 검사 논문
+chrome-extension://hmigninkgibhdckiaphhmbgcghochdjc/pdfjs/web/viewer.html?file=https%3A%2F%2Fwww.koreascience.or.kr%2Farticle%2FJAKO200532217901910.pdf
+chrome-extension://hmigninkgibhdckiaphhmbgcghochdjc/pdfjs/web/viewer.html?file=http%3A%2F%2Fhanyang.dcollection.net%2Fpublic_resource%2Fpdf%2F200000438442_20220406022407.pdf
+chrome-extension://hmigninkgibhdckiaphhmbgcghochdjc/pdfjs/web/viewer.html?file=https%3A%2F%2Fdcollection.skku.edu%2Fpublic_resource%2Fpdf%2F000000157868_20220406022537.pdf
+
+
+opencv
+https://studium-anywhere.tistory.com/22
+
+yolo설명
+https://yong0810.tistory.com/30
+https://towardsdatascience.com/yolo-v4-or-yolo-v5-or-pp-yolo-dad8e40f7109
+
+CNN
+https://youngq.tistory.com/40
+
+faster r-cnn
+https://yeomko.tistory.com/17
+https://woosikyang.github.io/fast-rcnn.html
+
+mask r-cnn
+https://ganghee-lee.tistory.com/40
+
+roboflow
+https://blog.roboflow.com/how-to-train-yolov5-on-a-custom-dataset/
